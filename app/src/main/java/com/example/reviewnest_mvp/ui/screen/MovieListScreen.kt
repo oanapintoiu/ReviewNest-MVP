@@ -34,9 +34,11 @@ fun MovieListScreen(presenter: MoviesPresenterContract) {
     var movies by remember { mutableStateOf(emptyList<MoviesModel>()) }
 
     // Implement the MoviesView interface in Compose
-    val view = object : MoviesView {
-        override fun showMovies(moviesList: List<MoviesModel>) {
-            movies = moviesList
+    val view = remember {
+        object : MoviesView {
+            override fun showMovies(moviesList: List<MoviesModel>) {
+                movies = moviesList
+            }
         }
     }
 
@@ -63,6 +65,15 @@ fun MovieListScreen(presenter: MoviesPresenterContract) {
                 .fillMaxWidth()
         )
 
+        Text(
+            text = "Top 20 Best Rated Movies",
+            color = Color(0xFFFFFFF0),
+            fontSize = 25.sp,
+            fontWeight = FontWeight.Bold,
+            letterSpacing = 1.5.sp,
+            modifier = Modifier.padding(bottom = 24.dp)
+        )
+
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -72,9 +83,9 @@ fun MovieListScreen(presenter: MoviesPresenterContract) {
                     modifier = Modifier.fillMaxWidth()
                 ) {
                     Text(
-                        text = movie.title,
+                        text = "${movie.title} (${movie.year})",
                         color = Color(0xFFFFFFF0),
-                        fontSize = 23.sp,
+                        fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
                         letterSpacing = 1.5.sp,
                         style = MaterialTheme.typography.bodyLarge,

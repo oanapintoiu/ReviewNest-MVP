@@ -1,8 +1,14 @@
 package com.example.reviewnest_mvp.presenter
 
-import com.example.reviewnest_mvp.model.MoviesListProvider
+import com.example.reviewnest_mvp.api.MoviesApiProvider
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class MoviesPresenter : MoviesPresenterContract {
+//declare a function that the Presenter can call to update the UI with a list of movies
+class MoviesPresenter(
+    private val provider: MoviesApiProvider
+) : MoviesPresenterContract {
     private var view: MoviesView? = null
 
     override fun attachView(view: MoviesView) {
@@ -10,7 +16,9 @@ class MoviesPresenter : MoviesPresenterContract {
     }
 
     override fun loadMovies() {
-        val movies = MoviesListProvider().getMovies()
-        view?.showMovies(movies)
+        CoroutineScope(Dispatchers.Main).launch {
+            val movies = provider.getMovies()
+            view?.showMovies(movies)
+        }
     }
 }

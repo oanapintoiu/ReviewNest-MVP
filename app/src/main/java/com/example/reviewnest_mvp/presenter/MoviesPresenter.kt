@@ -1,6 +1,6 @@
 package com.example.reviewnest_mvp.presenter
 
-import com.example.reviewnest_mvp.api.MoviesApiProvider
+import com.example.reviewnest_mvp.network.api.MoviesApiProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

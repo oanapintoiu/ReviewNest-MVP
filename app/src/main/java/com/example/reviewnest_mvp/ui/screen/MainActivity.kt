@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.remember
 import com.example.reviewnest_mvp.BuildConfig
-import com.example.reviewnest_mvp.api.MoviesApiProvider
+import com.example.reviewnest_mvp.network.api.MoviesApiProvider
 import com.example.reviewnest_mvp.presenter.MoviesPresenter
 
 

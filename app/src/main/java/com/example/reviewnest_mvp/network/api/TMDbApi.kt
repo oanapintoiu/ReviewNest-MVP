@@ -1,6 +1,6 @@
-package com.example.reviewnest_mvp.api
+package com.example.reviewnest_mvp.network.api
 
-import com.example.reviewnest_mvp.model.MoviesResponse
+import com.example.reviewnest_mvp.network.dto.MoviesResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 

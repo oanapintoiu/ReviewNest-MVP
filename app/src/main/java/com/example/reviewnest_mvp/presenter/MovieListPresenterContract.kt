@@ -4,12 +4,12 @@ import com.example.reviewnest_mvp.model.MovieListItemModel
 
 //this defines what the UI must show/provide
 //Declares functions for attaching the UI and triggering the load of movie data.
-interface MoviesView {
-    fun showMovies(movies: List<MovieListItemModel>)
+interface MovieListView {
+    fun showMovieList(movies: List<MovieListItemModel>)
 }
 
-interface MoviesPresenterContract {
-    fun attachView(view: MoviesView)
+interface MoviesListPresenterContract {
+    fun attachView(view: MovieListView)
     fun loadMovies()
 
 }

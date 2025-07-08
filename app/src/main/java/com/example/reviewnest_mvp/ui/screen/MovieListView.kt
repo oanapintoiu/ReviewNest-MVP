@@ -26,17 +26,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.reviewnest_mvp.model.MovieListItemModel
-import com.example.reviewnest_mvp.presenter.MoviesPresenterContract
-import com.example.reviewnest_mvp.presenter.MoviesView
+import com.example.reviewnest_mvp.presenter.MovieListView
+import com.example.reviewnest_mvp.presenter.MoviesListPresenterContract
 
 @Composable
-fun MovieListScreen(presenter: MoviesPresenterContract) {
+fun MovieListScreen(presenter: MoviesListPresenterContract) {
     var movies by remember { mutableStateOf(emptyList<MovieListItemModel>()) }
 
     // Implement the MoviesView interface in Compose
     val view = remember {
-        object : MoviesView {
-            override fun showMovies(moviesList: List<MovieListItemModel>) {
+        object : MovieListView {
+            override fun showMovieList(moviesList: List<MovieListItemModel>) {
                 movies = moviesList
             }
         }

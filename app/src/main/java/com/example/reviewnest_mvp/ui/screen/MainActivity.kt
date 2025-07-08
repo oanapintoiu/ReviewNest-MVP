@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.remember
 import com.example.reviewnest_mvp.BuildConfig
-import com.example.reviewnest_mvp.network.api.TMBdApiProvider
+import com.example.reviewnest_mvp.network.api.TMDbApiProvider
 import com.example.reviewnest_mvp.presenter.MovieListPresenter
 
 
@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
             val apiKey = BuildConfig.TMDB_API_KEY
 
             // Pass it to the provider
-            val provider = TMBdApiProvider(apiKey)
+            val provider = TMDbApiProvider(apiKey)
             val presenter = remember { MovieListPresenter(provider) }
             MovieListScreen(presenter = presenter)
         }

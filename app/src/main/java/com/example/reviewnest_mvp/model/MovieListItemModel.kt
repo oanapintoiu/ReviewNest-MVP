@@ -1,8 +1,8 @@
 package com.example.reviewnest_mvp.model
 
-data class MoviesListItemModel(
+data class MovieListItemModel(
     val id: String,
     val title: String,
-    val posterUrl: String,
+    val landscapeMoviePoster: String,
     val year: String,
 )

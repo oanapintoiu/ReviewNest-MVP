@@ -13,5 +13,4 @@ ageRating: String = ""
     rating = voteAverage,
     genres = genres.map { it.name },
     duration = runtime?.let { "${runtime / 60}h ${runtime % 60}m" } ?: "",
-    ageRating = ageRating,
 )

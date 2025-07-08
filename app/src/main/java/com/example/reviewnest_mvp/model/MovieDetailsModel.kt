@@ -8,5 +8,4 @@ data class MovieDetailsModel(
     val rating: Double,
     val genres: List<String>,
     val duration: String,
-    val ageRating: String,
 )

@@ -2,6 +2,7 @@ package com.example.reviewnest_mvp.ui.screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.aspectRatio
@@ -28,9 +29,14 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.reviewnest_mvp.model.MovieListItemModel
 import com.example.reviewnest_mvp.presenter.MovieListView
 import com.example.reviewnest_mvp.presenter.MoviesListPresenterContract
+import com.example.reviewnest_mvp.ui.theme.Coral
+import com.example.reviewnest_mvp.ui.theme.White
 
 @Composable
-fun MovieListScreen(presenter: MoviesListPresenterContract) {
+fun MovieListScreen(
+    presenter: MoviesListPresenterContract,
+    onMovieClicked: (Int) -> Unit
+) {
     var movies by remember { mutableStateOf(emptyList<MovieListItemModel>()) }
 
     // Implement the MoviesView interface in Compose
@@ -56,7 +62,7 @@ fun MovieListScreen(presenter: MoviesListPresenterContract) {
     ) {
         Text(
             text = "ReviewNest",
-            color =  Color(0xFffF6F40),
+            color =  Coral,
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             letterSpacing = 3.sp,
@@ -67,7 +73,7 @@ fun MovieListScreen(presenter: MoviesListPresenterContract) {
 
         Text(
             text = "Top 20 Best Rated Movies",
-            color = Color(0xFFFFFFF0),
+            color = White,
             fontSize = 25.sp,
             fontWeight = FontWeight.Bold,
             letterSpacing = 1.5.sp,
@@ -80,11 +86,13 @@ fun MovieListScreen(presenter: MoviesListPresenterContract) {
         ) {
             items(movies) { movie ->
                 Column(
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .clickable { onMovieClicked(movie.id.toInt()) }
                 ) {
                     Text(
                         text = "${movie.title} (${movie.year})",
-                        color = Color(0xFFFFFFF0),
+                        color = White,
                         fontSize = 20.sp,
                         fontWeight = FontWeight.SemiBold,
                         letterSpacing = 1.5.sp,

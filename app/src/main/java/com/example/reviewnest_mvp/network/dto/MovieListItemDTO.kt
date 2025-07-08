@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 
 //For endpoints like /movie/popular, /movie/top_rated, etc.
 
-data class MoviesResponse(
+data class MoviesListResponse(
     val results: List<MoviesListItemDTO>
 )
 

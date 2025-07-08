@@ -2,11 +2,13 @@ package com.example.reviewnest_mvp.network.dto
 
 import com.google.gson.annotations.SerializedName
 
+//For endpoints like /movie/popular, /movie/top_rated, etc.
+
 data class MoviesResponse(
-    val results: List<MoviesDTO>
+    val results: List<MoviesListItemDTO>
 )
 
-data class MoviesDTO(
+data class MoviesListItemDTO(
     val id: Int,
     val title: String,
 
@@ -14,5 +16,5 @@ data class MoviesDTO(
     val backdropPath: String?,
 
     @SerializedName("release_date")
-    val releaseDate: String?
+    val releaseYear: String?
 )

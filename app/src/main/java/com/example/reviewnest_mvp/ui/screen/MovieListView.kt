@@ -25,18 +25,18 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
-import com.example.reviewnest_mvp.model.MoviesListItemModel
+import com.example.reviewnest_mvp.model.MovieListItemModel
 import com.example.reviewnest_mvp.presenter.MoviesPresenterContract
 import com.example.reviewnest_mvp.presenter.MoviesView
 
 @Composable
 fun MovieListScreen(presenter: MoviesPresenterContract) {
-    var movies by remember { mutableStateOf(emptyList<MoviesListItemModel>()) }
+    var movies by remember { mutableStateOf(emptyList<MovieListItemModel>()) }
 
     // Implement the MoviesView interface in Compose
     val view = remember {
         object : MoviesView {
-            override fun showMovies(moviesList: List<MoviesListItemModel>) {
+            override fun showMovies(moviesList: List<MovieListItemModel>) {
                 movies = moviesList
             }
         }
@@ -92,7 +92,7 @@ fun MovieListScreen(presenter: MoviesPresenterContract) {
                         modifier = Modifier.padding(vertical = 8.dp)
                     )
                     Image(
-                        painter = rememberAsyncImagePainter(movie.posterUrl),
+                        painter = rememberAsyncImagePainter(movie.landscapeMoviePoster),
                         contentDescription = movie.title,
                         modifier = Modifier
                             .fillMaxWidth()

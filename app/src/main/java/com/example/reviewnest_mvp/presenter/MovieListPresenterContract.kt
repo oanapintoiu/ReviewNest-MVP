@@ -1,11 +1,11 @@
 package com.example.reviewnest_mvp.presenter
 
-import com.example.reviewnest_mvp.model.MoviesListItemModel
+import com.example.reviewnest_mvp.model.MovieListItemModel
 
 //this defines what the UI must show/provide
 //Declares functions for attaching the UI and triggering the load of movie data.
 interface MoviesView {
-    fun showMovies(movies: List<MoviesListItemModel>)
+    fun showMovies(movies: List<MovieListItemModel>)
 }
 
 interface MoviesPresenterContract {

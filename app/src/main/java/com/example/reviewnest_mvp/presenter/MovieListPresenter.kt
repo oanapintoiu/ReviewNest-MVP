@@ -1,13 +1,13 @@
 package com.example.reviewnest_mvp.presenter
 
-import com.example.reviewnest_mvp.network.api.MoviesApiProvider
+import com.example.reviewnest_mvp.network.api.TMBdApiProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 //declare a function that the Presenter can call to update the UI with a list of movies
-class MoviesPresenter(
-    private val provider: MoviesApiProvider
+class MovieListPresenter(
+    private val provider: TMBdApiProvider
 ) : MoviesPresenterContract {
     private var view: MoviesView? = null
 

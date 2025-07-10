@@ -10,9 +10,15 @@ data class MovieDetailsModel(
     val duration: String,
     val cast: List<CastMemberModel>,
     val overview: String,
+    val reviews: List<ReviewsModel>,
 )
 
 data class CastMemberModel(
     val name: String,
     val profileUrl: String?
+)
+
+data class ReviewsModel(
+    val author: String,
+    val content: String
 )

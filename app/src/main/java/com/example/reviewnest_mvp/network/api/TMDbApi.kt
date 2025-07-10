@@ -3,6 +3,7 @@ package com.example.reviewnest_mvp.network.api
 import com.example.reviewnest_mvp.network.dto.CastCreditsDTO
 import com.example.reviewnest_mvp.network.dto.MovieDetailsDTO
 import com.example.reviewnest_mvp.network.dto.MoviesListResponse
+import com.example.reviewnest_mvp.network.dto.ReviewsResponseDTO
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -27,4 +28,10 @@ interface TMDbApi {
         @Path("movie_id") movieId: Int,
         @Query("api_key") apiKey: String
     ): CastCreditsDTO
+
+    @GET("movie/{movie_id}/reviews")
+    suspend fun getMovieReviews(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String
+    ): ReviewsResponseDTO
 }

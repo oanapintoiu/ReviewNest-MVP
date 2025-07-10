@@ -4,6 +4,7 @@ import com.example.reviewnest_mvp.mappers.toCastMemberModel
 import com.example.reviewnest_mvp.mappers.toMovieDetailsModel
 import com.example.reviewnest_mvp.model.MovieListItemModel
 import com.example.reviewnest_mvp.mappers.toMoviesModelList
+import com.example.reviewnest_mvp.mappers.toReviewModel
 import com.example.reviewnest_mvp.model.MovieDetailsModel
 
 class TMDbApiProvider(private val apiKey: String) {
@@ -16,7 +17,12 @@ class TMDbApiProvider(private val apiKey: String) {
         val detailsResponse = TMDbApiClient.api.getMovieDetails(movieId, apiKey)
         val castResponse = TMDbApiClient.api.getMovieCast(movieId, apiKey)
         val castModels = castResponse.cast.map { it.toCastMemberModel() }
-        return detailsResponse.toMovieDetailsModel(cast = castModels)
+        val reviewsDTO = TMDbApiClient.api.getMovieReviews(movieId, apiKey)
+        val reviewModels = reviewsDTO.reviews.map { it.toReviewModel() }
+        return detailsResponse.toMovieDetailsModel(
+            cast = castModels,
+            reviews = reviewModels
+        )
 
     }
 }

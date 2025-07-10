@@ -1,5 +1,6 @@
 package com.example.reviewnest_mvp.network.api
 
+import com.example.reviewnest_mvp.network.dto.CastCreditsDTO
 import com.example.reviewnest_mvp.network.dto.MovieDetailsDTO
 import com.example.reviewnest_mvp.network.dto.MoviesListResponse
 import retrofit2.http.GET
@@ -20,4 +21,10 @@ interface TMDbApi {
         @Query("api_key") apiKey: String,
         @Query("language") language: String = "en-US",
     ): MovieDetailsDTO
+
+    @GET("movie/{movie_id}/credits")
+    suspend fun getMovieCast(
+        @Path("movie_id") movieId: Int,
+        @Query("api_key") apiKey: String
+    ): CastCreditsDTO
 }

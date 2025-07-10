@@ -4,12 +4,15 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -18,16 +21,20 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.rememberAsyncImagePainter
 import com.example.reviewnest_mvp.model.MovieDetailsModel
 import com.example.reviewnest_mvp.presenter.MovieDetailsPresenterContract
 import com.example.reviewnest_mvp.presenter.MovieDetailsView
+import com.example.reviewnest_mvp.ui.theme.Purple40
 import com.example.reviewnest_mvp.ui.theme.White
 
 @Composable
@@ -59,7 +66,6 @@ fun MovieDetailsScreen(
                 .background(Color.Black)
                 .padding(horizontal = 20.dp, vertical = 50.dp)
         ) {
-            // Back Button
             Button(
                 onClick = onBack,
                 modifier = Modifier.padding(bottom = 16.dp)
@@ -82,7 +88,6 @@ fun MovieDetailsScreen(
                 color = White
             )
 
-            // Backdrop image
             Image(
                 painter = rememberAsyncImagePainter(details.landscapeMoviePoster),
                 contentDescription = "Backdrop for ${details.title}",
@@ -101,11 +106,48 @@ fun MovieDetailsScreen(
             )
 
             Row {
-                Text(text = details.year, fontSize = 16.sp, color = White)
+                Text(text = details.year, fontSize = 14.sp, color = White)
                 Text(text = " • ", fontSize = 16.sp, color = White)
-                Text(text = details.genres.take(3).joinToString(), fontSize = 16.sp, color = White)
+                Text(text = details.genres.take(3).joinToString(), fontSize = 14.sp, color = White)
                 Text(text = " • ", fontSize = 16.sp, color = White)
-                Text(text = details.duration, fontSize = 16.sp, color = White)
+                Text(text = details.duration, fontSize = 14.sp, color = White)
+            }
+            Text(
+                text = "Cast",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = White,
+                modifier = Modifier.padding(bottom = 10.dp, top = 30.dp)
+            )
+            LazyRow {
+                items(details.cast.take(15)) { castMember ->
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        modifier = Modifier
+                            .width(80.dp)
+                            .padding(end = 12.dp)
+                    ) {
+                        Image(
+                            painter = rememberAsyncImagePainter(castMember.profileUrl),
+                            contentDescription = castMember.name,
+                            modifier = Modifier
+                                .size(64.dp)
+                                .clip(RoundedCornerShape(12.dp))
+                                .background(Purple40),
+                            contentScale = ContentScale.Crop
+                        )
+                        Text(
+                            text = castMember.name,
+                            fontSize = 14.sp,
+                            color = White,
+                            maxLines = 2,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier
+                                .padding(top = 7.dp)
+                                .fillMaxWidth(),
+                        )
+                    }
+                }
             }
         }
     }

@@ -12,7 +12,9 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,6 +37,7 @@ import com.example.reviewnest_mvp.model.MovieDetailsModel
 import com.example.reviewnest_mvp.presenter.MovieDetailsPresenterContract
 import com.example.reviewnest_mvp.presenter.MovieDetailsView
 import com.example.reviewnest_mvp.ui.theme.Purple40
+import com.example.reviewnest_mvp.ui.theme.Purple80
 import com.example.reviewnest_mvp.ui.theme.White
 
 @Composable
@@ -112,55 +115,95 @@ fun MovieDetailsScreen(
                 Text(text = " • ", fontSize = 16.sp, color = White)
                 Text(text = details.duration, fontSize = 14.sp, color = White)
             }
-            Text(
-                text = "Cast",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = White,
-                modifier = Modifier.padding(bottom = 10.dp, top = 30.dp)
-            )
-            LazyRow {
-                items(details.cast.take(15)) { castMember ->
-                    Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
-                        modifier = Modifier
-                            .width(80.dp)
-                            .padding(end = 12.dp)
-                    ) {
-                        Image(
-                            painter = rememberAsyncImagePainter(castMember.profileUrl),
-                            contentDescription = castMember.name,
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f, fill = true)
+                    .verticalScroll(rememberScrollState())
+            ) {
+                Text(
+                    text = "Cast",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = White,
+                    modifier = Modifier.padding(bottom = 10.dp, top = 30.dp)
+                )
+                LazyRow {
+                    items(details.cast.take(15)) { castMember ->
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
                             modifier = Modifier
-                                .size(64.dp)
-                                .clip(RoundedCornerShape(12.dp))
-                                .background(Purple40),
-                            contentScale = ContentScale.Crop
-                        )
-                        Text(
-                            text = castMember.name,
-                            fontSize = 14.sp,
-                            color = White,
-                            maxLines = 2,
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier
-                                .padding(top = 7.dp)
-                                .fillMaxWidth(),
-                        )
+                                .width(80.dp)
+                                .padding(end = 12.dp)
+                        ) {
+                            Image(
+                                painter = rememberAsyncImagePainter(castMember.profileUrl),
+                                contentDescription = castMember.name,
+                                modifier = Modifier
+                                    .size(64.dp)
+                                    .clip(RoundedCornerShape(12.dp))
+                                    .background(Purple40),
+                                contentScale = ContentScale.Crop
+                            )
+                            Text(
+                                text = castMember.name,
+                                fontSize = 14.sp,
+                                color = White,
+                                maxLines = 2,
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .padding(top = 7.dp)
+                                    .fillMaxWidth(),
+                            )
+                        }
+                    }
+                }
+                Text(
+                    text = "Overview",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = White,
+                    modifier = Modifier.padding(bottom = 10.dp, top = 30.dp)
+                )
+                Text(
+                    text = details.overview,
+                    fontSize = 14.sp,
+                    color = White
+                )
+                Text(
+                    text = "Reviews",
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.SemiBold,
+                    color = White,
+                    modifier = Modifier.padding(top = 30.dp, bottom = 10.dp)
+                )
+                if (details.reviews.isEmpty()) {
+                    Text(
+                        text = "No reviews yet.",
+                        fontSize = 14.sp,
+                        color = White,
+                        modifier = Modifier.padding(bottom = 16.dp)
+                    )
+                } else {
+                    details.reviews.forEach { review ->
+                        Column(modifier = Modifier.padding(bottom = 20.dp)) {
+                            Text(
+                                text = review.author,
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Bold,
+                                color = Purple80,
+                                modifier = Modifier.padding(bottom = 5.dp)
+                            )
+                            Text(
+                                text = review.content,
+                                fontSize = 14.sp,
+                                color = White,
+
+                            )
+                        }
                     }
                 }
             }
-            Text(
-                text = "Overview",
-                fontSize = 20.sp,
-                fontWeight = FontWeight.SemiBold,
-                color = White,
-                modifier = Modifier.padding(bottom = 10.dp, top = 30.dp)
-            )
-            Text(
-                text = details.overview,
-                fontSize = 14.sp,
-                color = White
-            )
         }
     }
 }

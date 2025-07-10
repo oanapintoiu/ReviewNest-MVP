@@ -16,6 +16,7 @@ fun MovieDetailsDTO.toMovieDetailsModel(
     genres = genres.map { it.name },
     duration = runtime?.let { "${runtime / 60}h ${runtime % 60}m" } ?: "",
     cast = cast,
+    overview = overview ?: "",
 )
 
 fun CastMemberDTO.toCastMemberModel(): CastMemberModel =

@@ -149,6 +149,18 @@ fun MovieDetailsScreen(
                     }
                 }
             }
+            Text(
+                text = "Overview",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.SemiBold,
+                color = White,
+                modifier = Modifier.padding(bottom = 10.dp, top = 30.dp)
+            )
+            Text(
+                text = details.overview,
+                fontSize = 14.sp,
+                color = White
+            )
         }
     }
 }

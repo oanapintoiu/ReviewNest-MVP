@@ -22,6 +22,9 @@ data class MovieDetailsDTO(
 
     @SerializedName("runtime")
     val runtime: Int?,
+
+    @SerializedName("overview")
+    val overview: String?
 )
 
 data class GenresDTO(

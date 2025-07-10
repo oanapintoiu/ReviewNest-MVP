@@ -9,6 +9,7 @@ data class MovieDetailsModel(
     val genres: List<String>,
     val duration: String,
     val cast: List<CastMemberModel>,
+    val overview: String,
 )
 
 data class CastMemberModel(

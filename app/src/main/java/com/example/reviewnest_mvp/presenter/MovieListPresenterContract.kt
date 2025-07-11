@@ -10,6 +10,6 @@ interface MovieListView {
 
 interface MoviesListPresenterContract {
     fun attachView(view: MovieListView)
+    fun detachView()
     fun loadMovies()
-
 }

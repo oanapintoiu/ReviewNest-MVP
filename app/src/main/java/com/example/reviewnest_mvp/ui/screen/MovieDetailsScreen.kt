@@ -18,6 +18,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -58,9 +59,12 @@ fun MovieDetailsScreen(
         }
     }
 
-    LaunchedEffect(Unit) {
+    DisposableEffect(movieId) {
         presenter.attachView(view)
         presenter.loadMovieDetails(movieId)
+        onDispose {
+            presenter.detachView(view)
+        }
     }
 
     movie?.let { details ->

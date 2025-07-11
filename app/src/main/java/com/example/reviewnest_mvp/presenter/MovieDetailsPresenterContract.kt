@@ -9,5 +9,6 @@ interface MovieDetailsView{
 
 interface MovieDetailsPresenterContract {
     fun attachView(view: MovieDetailsView)
+    fun detachView(view: MovieDetailsView)
     fun loadMovieDetails(movieId: Int)
 }

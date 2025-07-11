@@ -21,4 +21,8 @@ class MovieDetailsPresenter(
             view?.showMovieDetails(details)
         }
     }
+
+    override fun detachView(view: MovieDetailsView) {
+        this.view = null
+    }
 }

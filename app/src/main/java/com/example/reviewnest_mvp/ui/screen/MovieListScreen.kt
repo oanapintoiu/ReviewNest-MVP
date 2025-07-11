@@ -30,6 +30,8 @@ import com.example.reviewnest_mvp.model.MovieListItemModel
 import com.example.reviewnest_mvp.presenter.MovieListView
 import com.example.reviewnest_mvp.presenter.MoviesListPresenterContract
 import com.example.reviewnest_mvp.ui.theme.Coral
+import com.example.reviewnest_mvp.ui.theme.Purple40
+import com.example.reviewnest_mvp.ui.theme.Purple80
 import com.example.reviewnest_mvp.ui.theme.White
 
 @Composable
@@ -62,7 +64,7 @@ fun MovieListScreen(
     ) {
         Text(
             text = "ReviewNest",
-            color =  Coral,
+            color =  Purple80,
             fontSize = 36.sp,
             fontWeight = FontWeight.Bold,
             letterSpacing = 3.sp,

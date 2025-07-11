@@ -36,6 +36,7 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.reviewnest_mvp.model.MovieDetailsModel
 import com.example.reviewnest_mvp.presenter.MovieDetailsPresenterContract
 import com.example.reviewnest_mvp.presenter.MovieDetailsView
+import com.example.reviewnest_mvp.ui.component.ExpandableReviewText
 import com.example.reviewnest_mvp.ui.theme.Purple40
 import com.example.reviewnest_mvp.ui.theme.Purple80
 import com.example.reviewnest_mvp.ui.theme.White
@@ -108,7 +109,7 @@ fun MovieDetailsScreen(
                 color = White,
             )
 
-            Row {
+            Row(modifier = Modifier.padding(bottom = 12.dp),) {
                 Text(text = details.year, fontSize = 14.sp, color = White)
                 Text(text = " • ", fontSize = 16.sp, color = White)
                 Text(text = details.genres.take(3).joinToString(), fontSize = 14.sp, color = White)
@@ -194,11 +195,9 @@ fun MovieDetailsScreen(
                                 color = Purple80,
                                 modifier = Modifier.padding(bottom = 5.dp)
                             )
-                            Text(
+                            ExpandableReviewText(
                                 text = review.content,
-                                fontSize = 14.sp,
-                                color = White,
-
+                                minimizedMaxLines = 3
                             )
                         }
                     }

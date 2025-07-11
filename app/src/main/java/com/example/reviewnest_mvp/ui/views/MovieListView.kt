@@ -1,4 +1,4 @@
-package com.example.reviewnest_mvp.ui.screen
+package com.example.reviewnest_mvp.ui.views
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -15,7 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -30,8 +29,6 @@ import coil.compose.rememberAsyncImagePainter
 import com.example.reviewnest_mvp.model.MovieListItemModel
 import com.example.reviewnest_mvp.presenter.MovieListView
 import com.example.reviewnest_mvp.presenter.MoviesListPresenterContract
-import com.example.reviewnest_mvp.ui.theme.Coral
-import com.example.reviewnest_mvp.ui.theme.Purple40
 import com.example.reviewnest_mvp.ui.theme.Purple80
 import com.example.reviewnest_mvp.ui.theme.White
 
